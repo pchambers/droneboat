@@ -17,8 +17,12 @@ wp4 = (42.185130, -71.420475)
 
 path = [home, wp1, wp2, wp3, wp4, home]
 
-pathXML = gpxTupleParse.tupsToGpx(path)
+def writeGPX(tups):
+	pathXML = gpxTupleParse.tupsToGpx(tups)
 
-newRoute = open("test1.gpx", "w")
-newRoute.write(pathXML)
+	newRoute = open("test1.gpx", "w")
+	newRoute.write(pathXML)
+	newRoute.close()
+
+writeGPX(path)
 

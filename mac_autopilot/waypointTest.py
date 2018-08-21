@@ -14,15 +14,17 @@ wp3 = (42.184982, -71.424051)
 wp4 = (42.185130, -71.420475)
 
 # path: home > 1 > 2 > 3 > 4 > home
-
 path = [home, wp1, wp2, wp3, wp4, home]
 
+"""
+write gpx takes in a list of tuples(lat, long) and creates a new GPX doc, route1
+"""
 def writeGPX(tups):
 	pathXML = gpxTupleParse.tupsToGpx(tups)
 
-	newRoute = open("test1.gpx", "w")
+	newRoute = open("/GPX_Routes/route1.gpx", "w")
 	newRoute.write(pathXML)
 	newRoute.close()
 
-writeGPX(path)
+#writeGPX(path)
 

@@ -22,9 +22,9 @@ write gpx takes in a list of tuples(lat, long) and creates a new GPX doc, route1
 def writeGPX(tups):
 	pathXML = gpxTupleParse.tupsToGpx(tups)
 
-	newRoute = open("/GPX_Routes/route1.gpx", "w")
+	newRoute = open("./GPX_Routes/route1.gpx", "w")
 	newRoute.write(pathXML)
 	newRoute.close()
 
-#writeGPX(path)
+writeGPX(path)
 

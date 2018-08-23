@@ -7,7 +7,7 @@ import gpxpy.gpx
 
 def tupsToGpx(tups):
 	gpx = gpxpy.gpx.GPX()
-
+	gpx.name = "Vanguard Route"
 	"""
 	# Create first track in our GPX:
 	gpx_track = gpxpy.gpx.GPXTrack()

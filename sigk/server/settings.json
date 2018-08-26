@@ -1,0 +1,28 @@
+{
+  "interfaces": {},
+  "ssl": true,
+  "pipedProviders": [
+    {
+      "id": "GPS",
+      "pipeElements": [
+        {
+          "type": "providers/simple",
+          "options": {
+            "logging": false,
+            "type": "NMEA0183",
+            "subOptions": {
+              "validateChecksum": true,
+              "type": "serial",
+              "device": "/dev/ttyUSB1",
+              "baudrate": 9600
+            }
+          }
+        }
+      ],
+      "enabled": true
+    }
+  ],
+  "security": {
+    "strategy": "@signalk/sk-simple-token-security"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "vessels": {
+    "self": {
+      "name": "Vanguard-1",
+      "uuid": "urn:mrn:signalk:uuid:7f9f3530-7c06-43f9-b6f1-ae1a51022c89",
+      "design": {
+        "draft": {
+          "value": {
+            "maximum": 0.5
+          }
+        },
+        "length": {
+          "value": {
+            "overall": 1
+          }
+        },
+        "beam": {
+          "value": 0.75
+        },
+        "airHeight": {
+          "value": 0.5
+        }
+      },
+      "sensors": {
+        "gps": {
+          "fromBow": {
+            "value": 0.5
+          },
+          "fromCenter": {
+            "value": 0
+          }
+        }
+      }
+    }
+  }
+}

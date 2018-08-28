@@ -8,13 +8,34 @@
         {
           "type": "providers/simple",
           "options": {
-            "logging": false,
+            "logging": true,
             "type": "NMEA0183",
             "subOptions": {
               "validateChecksum": true,
               "type": "serial",
               "device": "/dev/ttyUSB1",
-              "baudrate": 9600
+              "baudrate": 9600,
+              "providerId": "GPS"
+            },
+            "providerId": "GPS"
+          }
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "DST800 - NMEA0183",
+      "pipeElements": [
+        {
+          "type": "providers/simple",
+          "options": {
+            "logging": false,
+            "type": "NMEA0183",
+            "subOptions": {
+              "validateChecksum": true,
+              "type": "serial",
+              "device": "/dev/ttyUSB0",
+              "baudrate": 4800
             }
           }
         }

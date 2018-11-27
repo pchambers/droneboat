@@ -25,7 +25,7 @@ class Drone():
 		self.position['cog'] = d['navigation']['courseOverGroundTrue']['value']
 		self.position['sog'] = d['navigation']['speedOverGround']['value']
 		self.water['temp'] = d['environment']['water']['temperature']['value']
-		#self.water['dbt'] = d['environment']['depth']['belowTranducer']['value']
+		self.water['dbt'] = d['environment']['depth']['belowTransducer']['value']
 
 		return self
 	

@@ -18,7 +18,7 @@ vessel = response.json()
 vg1 = Drone()
 vg1 = vg1.json(response.json())
 
-print vg1.setHistory()
+print vg1.setHistory()[0]
 
 #print response.json()
 #print rStr

@@ -1,0 +1,177 @@
+{
+    "name": "Vanguard-1", 
+    "environment": {
+        "water": {
+            "temperature": {
+                "timestamp": "2018-11-27T05:38:34.235Z", 
+                "meta": {
+                    "units": "K", 
+                    "description": "Current water temperature"
+                }, 
+                "$source": "DST800 - NMEA0183.YX", 
+                "value": 299.34999999999997, 
+                "sentence": "MTW"
+            }
+        }
+    }, 
+    "design": {
+        "beam": {
+            "value": 0.75
+        }, 
+        "length": {
+            "value": {
+                "overall": 1
+            }
+        }, 
+        "airHeight": {
+            "value": 0.5
+        }, 
+        "draft": {
+            "value": {
+                "maximum": 0.5
+            }
+        }
+    }, 
+    "sensors": {
+        "gps": {
+            "fromCenter": {
+                "value": 0
+            }, 
+            "fromBow": {
+                "value": 0.5
+            }
+        }
+    }, 
+    "navigation": {
+        "magneticVariationAgeOfService": {
+            "timestamp": "2018-11-27T05:38:34.000Z", 
+            "meta": {
+                "units": "s", 
+                "description": "Seconds since the 1st Jan 1970 that the variation calculation was made"
+            }, 
+            "$source": "GPS.GP", 
+            "value": 1543297114, 
+            "sentence": "RMC"
+        }, 
+        "gnss": {
+            "differentialReference": {
+                "timestamp": "2018-11-27T05:38:34.000Z", 
+                "meta": {
+                    "description": "ID of DGPS base station"
+                }, 
+                "$source": "GPS.GP", 
+                "value": 0, 
+                "sentence": "GGA"
+            }, 
+            "antennaAltitude": {
+                "timestamp": "2018-11-27T05:38:34.000Z", 
+                "meta": {
+                    "units": "m", 
+                    "description": "Altitude of antenna"
+                }, 
+                "$source": "GPS.GP", 
+                "value": 166, 
+                "sentence": "GGA"
+            }, 
+            "methodQuality": {
+                "timestamp": "2018-11-27T05:38:34.000Z", 
+                "meta": {
+                    "description": "Quality of the satellite fix"
+                }, 
+                "$source": "GPS.GP", 
+                "value": "GNSS Fix", 
+                "sentence": "GGA"
+            }, 
+            "horizontalDilution": {
+                "timestamp": "2018-11-27T05:38:34.000Z", 
+                "meta": {
+                    "description": "Horizontal Dilution of Precision"
+                }, 
+                "$source": "GPS.GP", 
+                "value": 1, 
+                "sentence": "GGA"
+            }, 
+            "satellites": {
+                "timestamp": "2018-11-27T05:38:34.000Z", 
+                "meta": {
+                    "description": "Number of satellites"
+                }, 
+                "$source": "GPS.GP", 
+                "value": 5, 
+                "sentence": "GGA"
+            }, 
+            "differentialAge": {
+                "timestamp": "2018-11-27T05:38:34.000Z", 
+                "meta": {
+                    "units": "s", 
+                    "description": "Age of DGPS data"
+                }, 
+                "$source": "GPS.GP", 
+                "value": 0, 
+                "sentence": "GGA"
+            }
+        }, 
+        "courseOverGroundMagnetic": {
+            "timestamp": "2018-11-27T05:38:34.626Z", 
+            "meta": {
+                "units": "rad", 
+                "description": "Course over ground (magnetic)"
+            }, 
+            "$source": "GPS.GP", 
+            "value": 0, 
+            "sentence": "VTG"
+        }, 
+        "datetime": {
+            "timestamp": "2018-11-27T05:38:34.000Z", 
+            "meta": {
+                "description": "Time and Date from the GNSS Positioning System"
+            }, 
+            "$source": "GPS.GP", 
+            "value": "2018-11-27T05:38:34.000Z", 
+            "sentence": "RMC"
+        }, 
+        "speedOverGround": {
+            "timestamp": "2018-11-27T05:38:34.626Z", 
+            "meta": {
+                "units": "m/s", 
+                "description": "Vessel speed over ground. If converting from AIS 'HIGH' value, set to 102.2 (Ais max value) and add warning in notifications"
+            }, 
+            "$source": "GPS.GP", 
+            "value": 0.15433337243112102, 
+            "sentence": "VTG"
+        }, 
+        "magneticVariation": {
+            "timestamp": "2018-11-27T05:38:34.000Z", 
+            "meta": {
+                "units": "rad", 
+                "description": "The magnetic variation (declination) at the current position"
+            }, 
+            "$source": "GPS.GP", 
+            "value": 0, 
+            "sentence": "RMC"
+        }, 
+        "position": {
+            "timestamp": "2018-11-27T05:38:34.000Z", 
+            "meta": {
+                "description": "The position of the vessel in 2 or 3 dimensions (WGS84 datum)"
+            }, 
+            "$source": "GPS.GP", 
+            "value": {
+                "latitude": 40.70661, 
+                "longitude": -74.42653833333334
+            }, 
+            "sentence": "RMC"
+        }, 
+        "courseOverGroundTrue": {
+            "timestamp": "2018-11-27T05:38:34.626Z", 
+            "meta": {
+                "units": "rad", 
+                "description": "Course over ground (true)"
+            }, 
+            "$source": "GPS.GP", 
+            "value": 4.805415030613205, 
+            "sentence": "VTG"
+        }
+    }, 
+    "uuid": "urn:mrn:signalk:uuid:7f9f3530-7c06-43f9-b6f1-ae1a51022c89"
+}

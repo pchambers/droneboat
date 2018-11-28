@@ -13,7 +13,7 @@
             "subOptions": {
               "validateChecksum": true,
               "type": "serial",
-              "device": "/dev/ttyUSB1",
+              "device": "/dev/ttyUSB0",
               "baudrate": 9600,
               "providerId": "GPS"
             },
@@ -29,13 +29,33 @@
         {
           "type": "providers/simple",
           "options": {
-            "logging": false,
+            "logging": true,
             "type": "NMEA0183",
             "subOptions": {
               "validateChecksum": true,
               "type": "serial",
-              "device": "/dev/ttyUSB0",
-              "baudrate": 4800
+              "device": "/dev/ttyUSB1",
+              "baudrate": 4800,
+              "providerId": "DST800 - NMEA0183"
+            },
+            "providerId": "DST800 - NMEA0183"
+          }
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "destination",
+      "pipeElements": [
+        {
+          "type": "providers/simple",
+          "options": {
+            "logging": false,
+            "type": "SignalK",
+            "subOptions": {
+              "type": "tcp",
+              "host": "vanguard-drone.local",
+              "port": "3443"
             }
           }
         }

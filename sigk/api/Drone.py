@@ -21,6 +21,7 @@ class Drone():
 			'lng': None
 		}if destination is None else destination
 		self.history = list()
+
 	#takes signal k json data for the drone self and constructs a Drone object.	
 	def fromJson(self, d):
 		self.name = d['name']
@@ -31,7 +32,7 @@ class Drone():
 		self.position['cog'] = d['navigation']['courseOverGroundTrue']['value']
 		self.position['sog'] = d['navigation']['speedOverGround']['value']
 		self.environment['temp'] = d['environment']['water']['temperature']['value']
-		#self.environment['dbt'] = d['environment']['depth']['belowTransducer']['value']
+		self.environment['dbt'] = d['environment']['depth']['belowTransducer']['value']
 
 		return self
 	
@@ -52,7 +53,7 @@ class Drone():
 	def auth(self):
 		url = "https://vanguard-drone.local:3443/signalk/v1/api/auth/login"
 		data = {"username": "drone", "password":"vanguard"}
-		r = requests.post(url,json.dumps(data))
+		r = requests.post(url,json.dumps(data), verify=False)
 		print r 
 
 	#PUT destination waypoint	
@@ -69,5 +70,3 @@ class Drone():
 		print json.dumps(data,indent=4)
 		r = requests.put(url, json.dumps(data), verify=False)
 		return r
-
-

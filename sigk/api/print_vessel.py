@@ -1,5 +1,5 @@
 import json, requests
-from get_self import Drone
+from Drone import Drone
 
 #curl -k https://vanguard-drone.local:3443/signalk/v1/api/vessels/self/
 url = 'https://vanguard-drone.local:3443/signalk/v1/api/vessels/self/'
@@ -16,9 +16,11 @@ vessel = response.json()
 
 
 vg1 = Drone()
-vg1 = vg1.json(response.json())
+vg1 = vg1.fromJson(response.json())
 
-print vg1.setHistory()[0]
+#print vg1.setHistory()[0]
+
+print vg1.setDest((str(40.50),str(-74.50))) 
 
 #print response.json()
 #print rStr

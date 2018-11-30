@@ -11,7 +11,6 @@ with open ("data_file.json", "w") as write_file:
 
 #rStr = json.dumps(response.json(), indent=4)
 
-vessel = response.json()
  
 
 
@@ -20,7 +19,7 @@ vg1 = vg1.fromJson(response.json())
 
 #print vg1.setHistory()[0]
 
-print vg1.setDest((str(40.50),str(-74.50))) 
+vg1.auth() #vg1.setHead(145.00) 
 
 #print response.json()
 #print rStr

@@ -19,7 +19,15 @@ vg1 = vg1.fromJson(response.json())
 
 #print vg1.setHistory()[0]
 
-vg1.auth() #vg1.setHead(145.00) 
+r1= vg1.auth() 
+print r1.request.url
+print r1
+
+
+r2 = vg1.setHead(150.00)
+print r2.request.url	
+print r2
+
 
 #print response.json()
 #print rStr

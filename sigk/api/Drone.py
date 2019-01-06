@@ -54,53 +54,7 @@ class Drone():
 	def setHistory(self):
 		self.history.append({self.datetime: (self.position, self.environment)})
 		return self.history
-"""
-	#authenitcate device
-	def auth(self):
-		path = "/login"
-		headers = {'Content-Type': 'application/json'} 
-		url = self.url + path
-		data = {'username': self.usr, 'password':self.pswd}
-		#data = '(username=drone+password=vanguard)'
-		#r = requests.post(url, data, headers = headers, verify=False)
-		#print requests.post(url, data, headers = headers, verify=False)
-		r = requests.put(url, headers=headers, auth=self.auths, verify=False, data=data,)
-		return r
-"""
-	#
-	def auth(self):
-		url =  'https://vanguard-drone.local:3443/signalk/v1/access/requests'
-		header = {"Content-Type": "application/json"}
-		uuid = "1234-45653-333666"
-		description = "Vanguard Drone Client"
+		
 
-		payload ={"clientId":"1234-45653-333666","description":"Vanguard Drone Client"}
 
-		r = requests.post(url, json=payload, verify=False)
-		print r
-
-	#PUT destination waypoint
-	def setDest(self, dest):
-		#self.auth()
-		self.destination['lat'] = dest[0]
-		self.destination['lng'] = dest[1]
-		path = '/vessels/self/navigation/destination/value/'
-		url = self.url + path
-		#data = {'vessels': {self.uuid: {'name':self.name, 'navigation':{'destination':{'value':{'latitude':self.destination['lat'], 'longitude': self.destination['lng']}}}}},'self': self.uuid, 'version':'0.1.0'}
-		data = {"value":{"latitude":self.destination['lat'], "longitude":self.destination['lng']},"source": "self"}
-
-		#print json.dumps(data,indent=4)
-		r = requests.put(url, json.dumps(data), auth=self.auths,)
-		return r
-
-	#set active true target heading
-	def setHead(self, tHead):
-		#self.auth()
-		path = '/vessels/self/steering/autopilot/target/headingTrue'
-		url = self.url + path
-		data = {"value": tHead,  "source": "actisense.204",}
-
-		#r = requests.put(url, data, auth=self.auths, verify=False)
-		r = requests.put(url, data, verify=False)
-		return r
 

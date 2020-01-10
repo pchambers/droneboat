@@ -3,13 +3,13 @@
     "environment": {
         "water": {
             "temperature": {
-                "timestamp": "2018-12-04T01:16:33.313Z", 
+                "timestamp": "2020-01-09T21:10:03.743Z", 
                 "meta": {
                     "units": "K", 
                     "description": "Current water temperature"
                 }, 
                 "$source": "DST800 - NMEA0183.YX", 
-                "value": 300.54999999999995, 
+                "value": 298.45, 
                 "sentence": "MTW"
             }
         }
@@ -18,14 +18,17 @@
         "security": {
             "accessRequest": {
                 "any": {
-                    "1234-45653-333666": {
-                        "timestamp": "2018-12-04T01:12:23.423Z", 
+                    "urn:mrn:signalk:uuid:7f9f3530-7c06-43f9-b6f1-ae1a51022c89": {
+                        "timestamp": "2020-01-09T20:27:55.875Z", 
                         "$source": "sk-simple-token-security-config", 
                         "value": {
-                            "timestamp": "2018-12-04T01:12:23.423Z", 
-                            "state": "normal", 
-                            "message": "The device \"Vanguard Drone Client\" has been approved", 
-                            "method": []
+                            "timestamp": "2020-01-09T20:27:55.875Z", 
+                            "state": "alert", 
+                            "message": "The device \"Vanguard Drone Pilot Client\" has requested access to the server", 
+                            "method": [
+                                "visual", 
+                                "sound"
+                            ]
                         }
                     }
                 }
@@ -62,75 +65,17 @@
     }, 
     "navigation": {
         "magneticVariationAgeOfService": {
-            "timestamp": "2018-12-04T01:16:33.000Z", 
+            "timestamp": "1980-01-06T00:46:12.000Z", 
             "meta": {
                 "units": "s", 
                 "description": "Seconds since the 1st Jan 1970 that the variation calculation was made"
             }, 
             "$source": "GPS.GP", 
-            "value": 1543886193, 
+            "value": 315967572, 
             "sentence": "RMC"
         }, 
-        "gnss": {
-            "differentialReference": {
-                "timestamp": "2018-12-04T01:16:33.000Z", 
-                "meta": {
-                    "description": "ID of DGPS base station"
-                }, 
-                "$source": "GPS.GP", 
-                "value": 0, 
-                "sentence": "GGA"
-            }, 
-            "antennaAltitude": {
-                "timestamp": "2018-12-04T01:16:33.000Z", 
-                "meta": {
-                    "units": "m", 
-                    "description": "Altitude of antenna"
-                }, 
-                "$source": "GPS.GP", 
-                "value": 147, 
-                "sentence": "GGA"
-            }, 
-            "methodQuality": {
-                "timestamp": "2018-12-04T01:16:33.000Z", 
-                "meta": {
-                    "description": "Quality of the satellite fix"
-                }, 
-                "$source": "GPS.GP", 
-                "value": "GNSS Fix", 
-                "sentence": "GGA"
-            }, 
-            "horizontalDilution": {
-                "timestamp": "2018-12-04T01:16:33.000Z", 
-                "meta": {
-                    "description": "Horizontal Dilution of Precision"
-                }, 
-                "$source": "GPS.GP", 
-                "value": 1, 
-                "sentence": "GGA"
-            }, 
-            "satellites": {
-                "timestamp": "2018-12-04T01:16:33.000Z", 
-                "meta": {
-                    "description": "Number of satellites"
-                }, 
-                "$source": "GPS.GP", 
-                "value": 5, 
-                "sentence": "GGA"
-            }, 
-            "differentialAge": {
-                "timestamp": "2018-12-04T01:16:33.000Z", 
-                "meta": {
-                    "units": "s", 
-                    "description": "Age of DGPS data"
-                }, 
-                "$source": "GPS.GP", 
-                "value": 0, 
-                "sentence": "GGA"
-            }
-        }, 
         "courseOverGroundMagnetic": {
-            "timestamp": "2018-12-04T01:16:33.597Z", 
+            "timestamp": "2020-01-09T21:10:03.559Z", 
             "meta": {
                 "units": "rad", 
                 "description": "Course over ground (magnetic)"
@@ -140,26 +85,26 @@
             "sentence": "VTG"
         }, 
         "datetime": {
-            "timestamp": "2018-12-04T01:16:33.000Z", 
+            "timestamp": "1980-01-06T00:46:12.000Z", 
             "meta": {
                 "description": "Time and Date from the GNSS Positioning System"
             }, 
             "$source": "GPS.GP", 
-            "value": "2018-12-04T01:16:33.000Z", 
+            "value": "1980-01-06T00:46:12.000Z", 
             "sentence": "RMC"
         }, 
         "speedOverGround": {
-            "timestamp": "2018-12-04T01:16:33.597Z", 
+            "timestamp": "2020-01-09T21:10:03.559Z", 
             "meta": {
                 "units": "m/s", 
                 "description": "Vessel speed over ground. If converting from AIS 'HIGH' value, set to 102.2 (Ais max value) and add warning in notifications"
             }, 
             "$source": "GPS.GP", 
-            "value": 0.6327668269675962, 
+            "value": 0, 
             "sentence": "VTG"
         }, 
         "magneticVariation": {
-            "timestamp": "2018-12-04T01:16:33.000Z", 
+            "timestamp": "1980-01-06T00:46:12.000Z", 
             "meta": {
                 "units": "rad", 
                 "description": "The magnetic variation (declination) at the current position that must be added to the magnetic heading to derive the true heading. Easterly variations are positive and Westerly variations are negative (in Radians)."
@@ -169,25 +114,25 @@
             "sentence": "RMC"
         }, 
         "position": {
-            "timestamp": "2018-12-04T01:16:33.000Z", 
+            "timestamp": "1980-01-06T00:46:12.000Z", 
             "meta": {
                 "description": "The position of the vessel in 2 or 3 dimensions (WGS84 datum)"
             }, 
             "$source": "GPS.GP", 
             "value": {
-                "latitude": 40.706698333333335, 
-                "longitude": -74.42632166666667
+                "latitude": null, 
+                "longitude": null
             }, 
             "sentence": "RMC"
         }, 
         "courseOverGroundTrue": {
-            "timestamp": "2018-12-04T01:16:33.597Z", 
+            "timestamp": "2020-01-09T21:10:03.559Z", 
             "meta": {
                 "units": "rad", 
                 "description": "Course over ground (true)"
             }, 
             "$source": "GPS.GP", 
-            "value": 0.9073966783190375, 
+            "value": 0, 
             "sentence": "VTG"
         }
     }, 

@@ -1,6 +1,7 @@
 {
-    "ip": "fe80::84b:7556:66aa:9530", 
-    "state": "PENDING", 
-    "href": "/signalk/v1/requests/3ea09631-d7ad-4733-8c06-bb7721c3450d", 
-    "requestId": "3ea09631-d7ad-4733-8c06-bb7721c3450d"
+    "ip": "fe80::424:4ccd:b560:6397", 
+    "state": "COMPLETED", 
+    "href": "/signalk/v1/requests/e8240b60-5176-4ffd-82d6-72d808a3a95e", 
+    "requestId": "e8240b60-5176-4ffd-82d6-72d808a3a95e", 
+    "statusCode": 400
 }

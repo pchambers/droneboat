@@ -7,7 +7,7 @@ class DronePilot():
 		self.uuid = '1234-45653-333666'
 		self.source = "VanguardPilot.AI"
 		self.token = None
-		self.authHead = None
+		self.authHead ={}
 		
 	#setup authorization of device:
 	def auth(self):
@@ -23,6 +23,7 @@ class DronePilot():
 			self.authHead = {'Authorization':'token %s' % self.token}
 		except:	
 			#if not start 
+			print "Exception, auth not processed"
 			r = requests.post(url, json=payload, verify=False)
 			saveJson(r, "auth_resp")
 			#print "first request"
@@ -61,8 +62,10 @@ def testReg(fn):
 	try:
 		#print "read token.json"
 		with open("token.json", "r") as token_read:
-			td= json.load(token_read)
+			td= json.load(token_read)	
 		token = td["accessRequest"]["token"]
+		#print "Token: "
+		#print token
 		#token = findKey(td)
 
 	except:

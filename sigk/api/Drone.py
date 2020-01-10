@@ -8,29 +8,71 @@ class Drone():
 		self.sslKey = "MIIEowIBAAKCAQEAwnCa3uEE72a7M/fnXn4dPEBcUDXuAgkrwUUXO3QHjDrgiBdJLTwapF2V2GStNj7FyRO7zzGJW6UE4pznUlbCtvU4Lcb07OFfVrzuW1NjxmpJeqXKsjQHw3WxzCG2ejJzRUZtlfbZFghORlxDljpSmIOituQhEKpmRfCzDi4PGBMVnRU8S8eyuHK/C9bB4htsZkh5sMBn8CDhboEPZZHxmoM0cqgJJyA9Cw7GU8D6K1PnkkGsCOLEC7ouMSMu69+mp/zjkwRG8e0mlIIO6wa794yDIFEL4idrQ7VSp+HN8JVo1SvV5ElsRSPvsjgEtuizbeTpr5MMaoPVAX2yN6wXtQIDAQABAoIBAG5Jmr6y2a7FEYgfpD/HvuNvCi2A+Xh0JTph6xSQ8rsKplLrClm7Ds2OO7FbIZh0MJGmPNAAJA40Yrn7D4Z3qchG/U+R21kFWKOFVJm+igiAPx9vLLK5qnGmr2u+75cOSK3RjdUTB/1kRqnIKZnriO/zMncUnOCsFoizR4zSeUNIinXSbdOh8/OUJiQ8Agly/jBFw29NgVTmzj4F8mitb/HRGd3cbdC5KgAFLfov3d+VvE45QFg0zDLQJ1TuLLI28BGP9b7zukbaIliZvrtoLbSSZ+sIFWdNkj/YE0KQiLdcgHNo34Ky2O3oUWNSWo3p24Pqko8UxbCr5Ggvt5DFrp0CgYEA6ynTzLBE/mXqYYlQf5xKdKwx+nDuazmqIdJFZSkFVItq1oDwDYjjohWm97BMghKsfN9ECfxvVPBFFu/d//aab6fW9u5QM7bRs1cVgg+dafxcjWALDmrW0WAuPPwQO7NRMQOHql0+PPhvf/vwo9EkN8mxuK9nudpuaXv6nnotYQ8CgYEA06sNdRpGomgIRjPbPvpL21aIp0D4g5RW12Cl2u9ieCpBjwFl0BKE5ahXhSXV3FYWEQODaRXe96Oega6GSUF7N/KPeZnxbyhfXZjIWQ+ex/PRWo5L5VpewaSYN9TvC2JiZ2ETXREO1lh3NFud8ENuUf35gUZO5Nx5WkbSROo3MvsCgYA1NdCr1xK1cYAYM8bYKRgb0D66yUTZVEHvxzFWk3KWT7mL8b7fgSLosPeHwgd9wxXuZ2Jw1AKo+HjZmMrluPn228ZjN0dEfFB0wPan6DqZGbYjcyDtUTVsSNQNjodpyshLS94tqU2E5D3ueqZXmuIUEXo6LM5OmmMzUQ9DPqf39wKBgCRY/UicqIB/CNy1TvLznE8f/vtppsNBl+AIUrLT5L7p0rQx8z/Vzkh5rf3JT340sjldtxU2kkFIMZHnXFv8CKLE3mptSw5him7SK6VPj16audqpENNjv13VW+ZKhHoZ/PfvrZmPslKQgnfVO7vkeG9QA6Z1YlremWAtRTJcXfo9AoGBAImGmZBaI+e0XcXHPzWwsTtrzg79G5gr2fPxJkf8SLE2Xy8ahosZKPlEW+/+D6GJPUidvKbVqXCpepJ4nhcvQKtF+Tr1aKjMXJpzZr+yUn8kat8MwBcBwu63j2FRMUuQfBJddAAXmEkUY6I9Yt4AW3/N78sdlv5QQXqGtWEBBZAM"
 		self.usr = 'drone'
 		self.pswd = 'vanguard'
-		self.auths =(self.usr, self.pswd)
+		self.RegExp = 'self'
+		self.login ={ 'username' : self.usr, 'password' : self.pswd}
+		self.auths = (self.usr, self.pswd)
+		self.token = None
+		self.authHead ={}
 		self.name = name
 		self.uuid = uuid
 		self.datetime = datetime
+		self.source = "VanguardPilot.AI"
 		self.position = {
 			'lat': 40.70, 
 			'lng': -74.42,
 			'cog': 0.0,
-			'sog':0.0 
+			'sog': 0.0 
 		} if position is None else position
 		self.environment = {
 			'temp': None,
 			'dbt': None
 		}
 		self.destination = {
+
 			'lat': None,
 			'lng': None
 		}if destination is None else destination
 		self.history = list()
 		self.token = None
 
+	#testing HTTP authentication from SignalK 1.18 documentation
+	def auth2(self):
+		path = '/auth/login'
+		url = self.url + path
+		payload = self.login
+		head = {'Content-Type': 'application/json'}
+		r = requests.post(url, json=payload, headers=head, verify=False)
+		#response = requests.post(url, data=json.dumps(payload), headers=head)
+		self.token = r.json()['token']
+		return r
+
+	#requests authorization tokens
+	def auth(self):
+		path =  '/access/requests'
+		url = self.url + path
+		description = "Vanguard Drone Pilot Client"
+		payload ={"clientId":self.uuid,"description":description}
+		
+		try:
+			#tesat to see if auth has already None
+			#print "call testReg"
+			self.token = testReg("auth_resp.json")	
+			self.authHead = {'Authorization':'token %s' % self.token}
+			#print self.authHead
+		except:	
+			#if not start 
+			print "Exception, auth not processed"
+		r = requests.post(url, json=payload, verify=False)
+		saveJson(r, "auth_resp")
+			#print "first request"
+		return self
+
 	#takes signal k json data for the drone self and constructs a Drone object.	
-	def fromJson(self, d):
+	def fromJson(self):
+		#self.auth()
+		aUrl = self.url + '/api/vessels/self/'
+		response = requests.get(aUrl, auth=self.auths)
+		d=response.json()
 		self.name = d['name']
 		self.uuid = d['uuid']
 		self.datetime = d['navigation']['datetime']['value']
@@ -39,22 +81,102 @@ class Drone():
 		self.position['cog'] = d['navigation']['courseOverGroundTrue']['value']
 		self.position['sog'] = d['navigation']['speedOverGround']['value']
 		self.environment['temp'] = d['environment']['water']['temperature']['value']
-	#	self.environment['dbt'] = d['environment']['depth']['belowTransducer']['value']
+		#self.environment['dbt'] = d['environment']['depth']['belowTransducer']['value']
+	
 		return self
 	
 	#returns tuple of (lat, long)
 	def getPosition(self):
+		self.pullPosition()
 		return (self.position['lat'], self.position['lng'])
 
 	#returns tuple of tuple of (lat, long) and depth below transducer	
 	def getDepth(self):
-		return(self.getPosition(),self.environment['dbt'])
+		self.pullDepth()
+		return(self.environment['dbt'])
+
+	def getPosDepth(self):
+		self.pullDepth()
+		self.pullPosition()
+		return (self.getPosition(),getDepth())
+
+	#pulls most recent depth value
+	def pullDepth(self):
+		dUrl = self.url + '/api/vessels/' + self.RegExp + '/environment/depth/belowTransducer'
+		response = requests.get(dUrl,verify=False)
+		#self.environment['dbt'] = response.json()['value']
+		return self.environment['dbt']
+
+
+	#pulls most recent position from gps
+	def pullPosition(self):
+		aUrl = self.url + '/api/vessels/' + self.RegExp + '/navigation/position'
+		response = requests.get(aUrl, verify=False)
+		self.position['lat'] = response.json()['value']['latitude']
+		self.position['lng'] = response.json()['value']['longitude']
+		return (self.position['lat'], self.position['lng'])
+
 
 	#adds the most recent depth tuple to a history of the places the drone has been
 	def setHistory(self):
 		self.history.append({self.datetime: (self.position, self.environment)})
 		return self.history
+			
+	#set active true target heading
+	def setHead(self, tHead):
+		#self.auth()
+		path = '/vessels/self/steering/autopilot/target/headingTrue'
+		url = self.url + path
+		data = {"value": tHead,  "source": self.source}
+		header = self.authHead	
+		header["Content-Type"] = "applications/json"
+		#r = requests.put(url, data, auth=self.auths, verify=False)
+		r = requests.put(url, json=data, verify=False, headers=header)
+		return r 	
+
+#----------------- HELPERS -------------------------------
+#test a local .json file to see if there is already a token saved, and if the local 
+def testReg(fn):
+	try:
+		#print "read token.json"
+		with open("token.json", "r") as token_read:
+			td= json.load(token_read)	
+		token = td["accessRequest"]["token"]
+		#print "Token: "
+		#print token
+		#token = findKey(td)
+
+	except:
+		#print "searching auth_resp.json"
+		with open ("auth_resp.json", "r") as json_data:
+			d = json.load(json_data)
 		
+		path = d["href"] 
+		url = "https://vanguard-drone.local:3443" + path
+		#print url
+		r = requests.get(url, verify=False)
+		
+		if r.json()["state"]=="DENIED":
+			print "Error with login"
+		if r.json()["state"]=="PENDING":
+			print "Verification pending on server console"
+		elif r.json()["state"]=="COMPLETED":
+			saveJson(r, "token")
+			token = r.json()["accessRequest"]["token"]
+			#token = findKey(r.json())
+			#print "just saved token"
 
+	return token
 
+#search for the authKey in a json file
+def findKey(response):
+	#print response
+	if response['accessRequest']['permission'] == 'APPROVED':
+		return response['accessRequest']['token']
 
+#save the json object r as filename name
+def saveJson(r,name):
+	fn = name +".json"
+	with open (fn, "w") as write_file:
+		json.dump(r.json(), write_file, indent=4)
+	return fn

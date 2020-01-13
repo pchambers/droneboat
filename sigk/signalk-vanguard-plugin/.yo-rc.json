@@ -1,0 +1,24 @@
+{
+  "generator-signalk-plugin": {
+    "promptValues": {
+      "id": "signalk-vanguard-plugin",
+      "name": "Vanguard Piloting and Reporting",
+      "className": "Drone",
+      "description": "Explores and maps water depth",
+      "hasWebApp": true,
+      "paths": [
+        "pos",
+        "depth",
+        "speed",
+        "heading",
+        "course",
+        "closestAppr",
+        "tripETA",
+        "waterTemp",
+        "outsideTemp",
+        "outsideRelHumid",
+        "someSKData"
+      ]
+    }
+  }
+}

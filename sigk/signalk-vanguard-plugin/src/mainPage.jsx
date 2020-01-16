@@ -16,7 +16,8 @@ class MainPage extends React.Component {
     
       updateData() {
         // Make an API call to retrieve the data...
-        fetch("/plugins/signalk-vanguard-plugin/api/testData")
+        //fetch("/plugins/signalk-vanguard-plugin/api/testData")
+        fetchh("http://vanguard-drone.local:3443/signalk/v1/")
           .then((res) => {
              let myres = res;
              return res.json()

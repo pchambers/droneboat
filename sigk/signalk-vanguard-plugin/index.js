@@ -5,6 +5,7 @@ const SignalKPlugin = require('signalk-plugin-base');
 class Drone extends SignalKPlugin {
 
   constructor(app) {
+    this.debug("construct Drone class");
     super(app, 'signalk-vanguard-plugin', 'Vanguard Piloting and Reporting', 'Explores and maps water depth');
 
 
@@ -63,6 +64,7 @@ class Drone extends SignalKPlugin {
      // This is for API demonstration only (see registerWithRouter())
      this.apiTestData = {};
      
+//    GPS POSITION  
 
      // BaconJS data stream for GPS position -----------------------------------------------------------------
      this.strmPos = this.getSKBus(this.options.posSKPath);
@@ -80,6 +82,7 @@ class Drone extends SignalKPlugin {
      this.subscribeVal(this.strmPos, delta => { this.debug(`Pos: ${JSON.stringify(delta, null, 2)}`) } );
      this.subscribeVal(this.strmPosVal, value => { this.debug(`Pos (filtered): ${JSON.stringify(value, null, 2)}`) } );
 
+//    DEPTH
 
      // BaconJS data stream for Depth -----------------------------------------------------------------
      this.strmDepth = this.getSKBus(this.options.depthSKPath);
@@ -93,9 +96,10 @@ class Drone extends SignalKPlugin {
      this.subscribeVal(this.strmDepthVal, onDepthValue );
 
      // Uncomment this line to view incomming values on console...
-     // this.subscribeVal(this.strmDepth, delta => { this.debug(`Depth: ${JSON.stringify(delta, null, 2)}`) } );
-     // this.subscribeVal(this.strmDepthVal, value => { this.debug(`Depth (filtered): ${JSON.stringify(value, null, 2)}`) } );
+      this.subscribeVal(this.strmDepth, delta => { this.debug(`Depth: ${JSON.stringify(delta, null, 2)}`) } );
+      this.subscribeVal(this.strmDepthVal, value => { this.debug(`Depth (filtered): ${JSON.stringify(value, null, 2)}`) } );
 
+//    SPEED
 
      // BaconJS data stream for Speed -----------------------------------------------------------------
      this.strmSpeed = this.getSKBus(this.options.speedSKPath);
@@ -109,9 +113,10 @@ class Drone extends SignalKPlugin {
      this.subscribeVal(this.strmSpeedVal, onSpeedValue );
 
      // Uncomment this line to view incomming values on console...
-     // this.subscribeVal(this.strmSpeed, delta => { this.debug(`Speed: ${JSON.stringify(delta, null, 2)}`) } );
-     // this.subscribeVal(this.strmSpeedVal, value => { this.debug(`Speed (filtered): ${JSON.stringify(value, null, 2)}`) } );
+      this.subscribeVal(this.strmSpeed, delta => { this.debug(`Speed: ${JSON.stringify(delta, null, 2)}`) } );
+      this.subscribeVal(this.strmSpeedVal, value => { this.debug(`Speed (filtered): ${JSON.stringify(value, null, 2)}`) } );
 
+//    HEADING
 
      // BaconJS data stream for Heading -----------------------------------------------------------------
      this.strmHeading = this.getSKBus(this.options.headingSKPath);
@@ -125,9 +130,10 @@ class Drone extends SignalKPlugin {
      this.subscribeVal(this.strmHeadingVal, onHeadingValue );
 
      // Uncomment this line to view incomming values on console...
-     // this.subscribeVal(this.strmHeading, delta => { this.debug(`Heading: ${JSON.stringify(delta, null, 2)}`) } );
-     // this.subscribeVal(this.strmHeadingVal, value => { this.debug(`Heading (filtered): ${JSON.stringify(value, null, 2)}`) } );
+      this.subscribeVal(this.strmHeading, delta => { this.debug(`Heading: ${JSON.stringify(delta, null, 2)}`) } );
+      this.subscribeVal(this.strmHeadingVal, value => { this.debug(`Heading (filtered): ${JSON.stringify(value, null, 2)}`) } );
 
+//    COG
 
      // BaconJS data stream for Course over ground -----------------------------------------------------------------
      this.strmCourse = this.getSKBus(this.options.courseSKPath);
@@ -141,9 +147,10 @@ class Drone extends SignalKPlugin {
      this.subscribeVal(this.strmCourseVal, onCourseValue );
 
      // Uncomment this line to view incomming values on console...
-     // this.subscribeVal(this.strmCourse, delta => { this.debug(`Course: ${JSON.stringify(delta, null, 2)}`) } );
-     // this.subscribeVal(this.strmCourseVal, value => { this.debug(`Course (filtered): ${JSON.stringify(value, null, 2)}`) } );
+      this.subscribeVal(this.strmCourse, delta => { this.debug(`Course: ${JSON.stringify(delta, null, 2)}`) } );
+      this.subscribeVal(this.strmCourseVal, value => { this.debug(`Course (filtered): ${JSON.stringify(value, null, 2)}`) } );
 
+//    CLOSEST APPRAOCH (AIS)
 
      // BaconJS data stream for Closest approach (from AIS) -----------------------------------------------------------------
      this.strmClosestAppr = this.getSKBus(this.options.closestApprSKPath);
@@ -160,6 +167,7 @@ class Drone extends SignalKPlugin {
      // this.subscribeVal(this.strmClosestAppr, delta => { this.debug(`ClosestAppr: ${JSON.stringify(delta, null, 2)}`) } );
      // this.subscribeVal(this.strmClosestApprVal, value => { this.debug(`ClosestAppr (filtered): ${JSON.stringify(value, null, 2)}`) } );
 
+//    ETA
 
      // BaconJS data stream for Estimated time of arrival -----------------------------------------------------------------
      this.strmTripETA = this.getSKBus(this.options.tripETASKPath);
@@ -176,7 +184,7 @@ class Drone extends SignalKPlugin {
      // this.subscribeVal(this.strmTripETA, delta => { this.debug(`TripETA: ${JSON.stringify(delta, null, 2)}`) } );
      // this.subscribeVal(this.strmTripETAVal, value => { this.debug(`TripETA (filtered): ${JSON.stringify(value, null, 2)}`) } );
 
-
+//    ETA
      // BaconJS data stream for Water surface temp -----------------------------------------------------------------
      this.strmWaterTemp = this.getSKBus(this.options.waterTempSKPath);
 
@@ -192,6 +200,7 @@ class Drone extends SignalKPlugin {
      // this.subscribeVal(this.strmWaterTemp, delta => { this.debug(`WaterTemp: ${JSON.stringify(delta, null, 2)}`) } );
      // this.subscribeVal(this.strmWaterTempVal, value => { this.debug(`WaterTemp (filtered): ${JSON.stringify(value, null, 2)}`) } );
 
+//    AIR TEMP
 
      // BaconJS data stream for Outside air temperature -----------------------------------------------------------------
      this.strmOutsideTemp = this.getSKBus(this.options.outsideTempSKPath);
@@ -205,9 +214,10 @@ class Drone extends SignalKPlugin {
      this.subscribeVal(this.strmOutsideTempVal, onOutsideTempValue );
 
      // Uncomment this line to view incomming values on console...
-     // this.subscribeVal(this.strmOutsideTemp, delta => { this.debug(`OutsideTemp: ${JSON.stringify(delta, null, 2)}`) } );
-     // this.subscribeVal(this.strmOutsideTempVal, value => { this.debug(`OutsideTemp (filtered): ${JSON.stringify(value, null, 2)}`) } );
+      this.subscribeVal(this.strmOutsideTemp, delta => { this.debug(`OutsideTemp: ${JSON.stringify(delta, null, 2)}`) } );
+      this.subscribeVal(this.strmOutsideTempVal, value => { this.debug(`OutsideTemp (filtered): ${JSON.stringify(value, null, 2)}`) } );
 
+//    RELATIVE HUMIDITY
 
      // BaconJS data stream for Outside air rel humitity -----------------------------------------------------------------
      this.strmOutsideRelHumid = this.getSKBus(this.options.outsideRelHumidSKPath);
@@ -224,6 +234,7 @@ class Drone extends SignalKPlugin {
      // this.subscribeVal(this.strmOutsideRelHumid, delta => { this.debug(`OutsideRelHumid: ${JSON.stringify(delta, null, 2)}`) } );
      // this.subscribeVal(this.strmOutsideRelHumidVal, value => { this.debug(`OutsideRelHumid (filtered): ${JSON.stringify(value, null, 2)}`) } );
 
+//    GENERIC
 
      // BaconJS data stream for Generic/example data value -----------------------------------------------------------------
      this.strmSomeSKData = this.getSKBus(this.options.someSKDataSKPath);

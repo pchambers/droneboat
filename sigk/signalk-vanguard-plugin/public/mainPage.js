@@ -32,7 +32,8 @@ var MainPage = function (_React$Component) {
       var _this2 = this;
 
       // Make an API call to retrieve the data...
-      fetch("/plugins/signalk-vanguard-plugin/api/testData").then(function (res) {
+      //fetch("/plugins/signalk-vanguard-plugin/api/testData")
+      fetchh("http://vanguard-drone.local:3443/signalk/v1/").then(function (res) {
         var myres = res;
         return res.json();
       }).then(function (data) {
